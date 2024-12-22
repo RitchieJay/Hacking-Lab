@@ -1,0 +1,22 @@
+services:
+  attacker:
+    container_name: cyberlab_attacker
+    hostname: attacker
+    image: ritchie1970/kali:common
+    networks:
+      - cyberlab
+    ports:
+      - 3389:3389
+    restart: unless-stopped
+  victim:
+    container_name: cyberlab_victim
+    hostname: victim
+    image: ritchie1970/metasploitable:two
+    stdin_open: true
+    tty: true
+    networks:
+      - cyberlab
+    restart: unless-stopped
+networks:
+  cyberlab:
+    driver: bridge
